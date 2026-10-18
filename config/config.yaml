@@ -1,0 +1,42 @@
+# Configuración del pipeline - Semana 1
+# Proyecto: Predicción de susceptibilidad viral en primates neotropicales
+
+threads: 4
+
+species:
+  - Ateles_fusciceps
+  - Callithrix_jacchus
+  - Saimiri_boliviensis
+  - Aotus_nancymaae
+  - Cebus_imitator
+  - Sapajus_apella
+  - Macaca_mulatta
+  - Pan_troglodytes
+  - Homo_sapiens
+
+genes:
+  - TLR1
+  - TLR2
+  - TLR3
+  - TLR4
+  - TLR7
+  - TLR8
+  - TLR9
+  - TRIM5
+  - APOBEC3G
+  - APOBEC3H
+  - MX1
+  - MX2
+  - OAS1
+  - OAS2
+  - BST2
+  - ACE2
+  - CD4
+  - DDX58
+  - MAVS
+
+paths:
+  raw: "data/raw"
+  processed: "data/processed"
+  results: "results"
+  logs: "logs"

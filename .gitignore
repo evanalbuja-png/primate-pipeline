@@ -1,0 +1,49 @@
+# Datos pesados (no versionar)
+data/
+results/
+
+# Excepciones puntuales (tablas y resultados pequeños sí se versionan)
+!results/.gitkeep
+!results/**/*.md
+!results/**/*.tsv
+!results/**/*.csv
+!results/**/*.txt
+!results/**/*.html
+
+# Snakemake
+.snakemake/
+*.snakemake.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Temporales y logs pesados
+*.tmp
+*.temp
+*.log
+!docs/logs/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Entornos y caches
+.conda/
+*.lock
+!envs/*.lock.yml
+!envs/*.yml
+
+# Sistema / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# Jupyter
+.ipynb_checkpoints/
