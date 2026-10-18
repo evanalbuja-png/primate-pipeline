@@ -1,0 +1,37 @@
+# Snakefile base - Semana 1
+# Proyecto Ateles immune genomics (INABIO)
+
+configfile: "config/config.yaml"
+
+rule all:
+    input:
+        "results/verificacion_entorno.txt"
+
+rule verificar_entorno:
+    output:
+        "results/verificacion_entorno.txt"
+    conda:
+        "../envs/ateles_align_filo.yml"
+    shell:
+        """
+        set +o pipefail
+        echo "=== Verificación de entorno Snakemake ===" > {output}
+        echo "Fecha: $(date)" >> {output}
+        echo "" >> {output}
+        echo "Snakemake version:" >> {output}
+        snakemake --version >> {output} 2>&1 || true
+        echo "" >> {output}
+        echo "Python version:" >> {output}
+        python --version >> {output} 2>&1 || true
+        echo "" >> {output}
+        echo "MAFFT version:" >> {output}
+        mafft --version >> {output} 2>&1 || true
+        echo "" >> {output}
+        echo "IQ-TREE version:" >> {output}
+        iqtree --version >> {output} 2>&1 || true
+        echo "" >> {output}
+        echo "OrthoFinder:" >> {output}
+        which orthofinder >> {output} 2>&1 || true
+        echo "" >> {output}
+        echo "Entorno activado correctamente por Snakemake." >> {output}
+        """
