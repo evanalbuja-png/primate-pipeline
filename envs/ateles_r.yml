@@ -1,0 +1,13 @@
+name: ateles_r
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base
+  - r-ggplot2
+  - r-ape
+  - r-phytools
+  - bioconductor-ggtree
+  - bioconductor-complexheatmap
+  - r-tidyverse

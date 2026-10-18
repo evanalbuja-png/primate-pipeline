@@ -1,0 +1,15 @@
+name: ateles_align_filo
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - mafft
+  - trimal
+  - pal2nal
+  - iqtree
+  - modeltest-ng
+  - mrbayes
+  - orthofinder
+  - snakemake
+  - python

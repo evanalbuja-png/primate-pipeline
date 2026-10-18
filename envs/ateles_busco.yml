@@ -1,0 +1,8 @@
+name: ateles_busco
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - busco
+  - python

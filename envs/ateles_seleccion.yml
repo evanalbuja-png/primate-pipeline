@@ -1,0 +1,10 @@
+name: ateles_seleccion
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - paml
+  - hyphy
+  - biopython
+  - python

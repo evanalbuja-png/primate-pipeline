@@ -1,0 +1,17 @@
+name: ateles_datos
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - ncbi-datasets-cli
+  - blast
+  - diamond
+  - biopython
+  - gffread
+  - gffutils
+  - pyfaidx
+  - pandas
+  - seqkit
+  - entrez-direct
+  - python
