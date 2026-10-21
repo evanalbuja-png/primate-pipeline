@@ -225,4 +225,3 @@ dependencies:
   - yte=1.9.4
   - zlib=1.3.2
   - zstd=1.5.7
-prefix: /home/evan/miniforge3/envs/ateles_align_filo
