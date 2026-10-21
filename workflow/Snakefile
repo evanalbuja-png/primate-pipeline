@@ -11,7 +11,7 @@ rule verificar_entorno:
     output:
         "results/verificacion_entorno.txt"
     conda:
-        "../envs/ateles_align_filo.yml"
+        "../envs/ateles_align_filo.lock.yml"
     shell:
         """
         set +o pipefail
