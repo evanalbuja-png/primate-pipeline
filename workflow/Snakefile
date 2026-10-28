@@ -1,11 +1,17 @@
-# Snakefile base - Semana 1
+# Snakefile — Semana 1 + Semana 2 (FASE A por defecto)
 # Proyecto Ateles immune genomics (INABIO)
-
 configfile: "config/config.yaml"
+
+include: "rules/pubmed.smk"
 
 rule all:
     input:
-        "results/verificacion_entorno.txt"
+        "results/verificacion_entorno.txt",
+        "results/bibliografia/resumen_busquedas.tsv",
+        expand(
+            "results/bibliografia/{qid}/records.medline",
+            qid=config["pubmed"].get("fetch", [])
+        ),
 
 rule verificar_entorno:
     output:

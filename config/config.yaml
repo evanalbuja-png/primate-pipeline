@@ -40,3 +40,77 @@ paths:
   processed: "data/processed"
   results: "results"
   logs: "logs"
+
+# --- Semana 2: búsquedas bibliográficas PubMed ---
+# Email y API key NO van aquí (repo público). Usar:
+#   export NCBI_EMAIL="tu@email"
+#   export NCBI_API_KEY="opcional"
+pubmed:
+  outdir: "results/bibliografia"
+  max_fetch: 1500
+  fetch:
+    - base1_literal
+    - base1_refinada
+    - base2_refinada
+    - base3_literal
+    - base3_refinada
+    - base4_literal
+    - base4_refinada
+    - grupo_TLR
+    - grupo_APOBEC3
+    - grupo_MX_OAS
+    - grupo_BST2
+    - grupo_ACE2
+    - grupo_CD4
+    - grupo_DDX58_MAVS
+    - complementaria_Ateles
+
+pubmed_queries:
+  base1_literal:
+    tipo: literal
+    term: "innate immunity primates positive selection"
+  base1_refinada:
+    tipo: refinada
+    term: '("innate immunity"[tiab] OR "innate immune"[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab] OR Neotropical[tiab]) AND ("positive selection"[tiab] OR "adaptive evolution"[tiab] OR "dN/dS"[tiab])'
+  base2_literal:
+    tipo: literal
+    term: "antiviral restriction factors Neotropical primates"
+  base2_refinada:
+    tipo: refinada
+    term: '("restriction factor"[tiab] OR "restriction factors"[tiab] OR TRIM5[tiab] OR APOBEC3[tiab] OR BST2[tiab] OR tetherin[tiab] OR MX1[tiab] OR MX2[tiab] OR OAS1[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab] OR Neotropical[tiab]) AND (antiviral[tiab] OR virus[tiab] OR retrovirus[tiab])'
+  base3_literal:
+    tipo: literal
+    term: "ACE2 primate coronavirus susceptibility"
+  base3_refinada:
+    tipo: refinada
+    term: '(ACE2[tiab] OR "angiotensin-converting enzyme 2"[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab] OR "host range"[tiab] OR "cross-species"[tiab] OR vertebrate*[tiab] OR "animal species"[tiab]) AND (coronavirus*[tiab] OR "SARS-CoV-2"[tiab] OR "SARS-CoV"[tiab] OR betacoronavirus*[tiab])'
+  base4_literal:
+    tipo: literal
+    term: "TRIM5 evolution New World monkeys"
+  base4_refinada:
+    tipo: refinada
+    term: '(TRIM5[tiab] OR TRIM5alpha[tiab] OR "TRIM5 alpha"[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab] OR Neotropical[tiab]) AND (evolution[tiab] OR "positive selection"[tiab] OR "adaptive evolution"[tiab] OR phylogen*[tiab] OR restriction[tiab])'
+  grupo_TLR:
+    tipo: grupo
+    term: '(TLR1[tiab] OR TLR2[tiab] OR TLR3[tiab] OR TLR4[tiab] OR TLR7[tiab] OR TLR8[tiab] OR TLR9[tiab] OR "Toll-like receptor"[tiab] OR "Toll-like receptors"[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("positive selection"[tiab] OR evolution[tiab] OR phylogen*[tiab] OR "dN/dS"[tiab])'
+  grupo_APOBEC3:
+    tipo: grupo
+    term: '(APOBEC3G[tiab] OR APOBEC3H[tiab] OR APOBEC3[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("positive selection"[tiab] OR evolution[tiab] OR restriction[tiab] OR deaminas*[tiab])'
+  grupo_MX_OAS:
+    tipo: grupo
+    term: '(MX1[tiab] OR MX2[tiab] OR OAS1[tiab] OR OAS2[tiab] OR "myxovirus resistance"[tiab] OR "oligoadenylate synthetase"[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("positive selection"[tiab] OR evolution[tiab] OR antiviral[tiab])'
+  grupo_BST2:
+    tipo: grupo
+    term: '(BST2[tiab] OR tetherin[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("positive selection"[tiab] OR evolution[tiab] OR restriction[tiab])'
+  grupo_ACE2:
+    tipo: grupo
+    term: '(ACE2[tiab] OR "angiotensin-converting enzyme 2"[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND (coronavirus*[tiab] OR "SARS-CoV-2"[tiab] OR "SARS-CoV"[tiab] OR susceptibility[tiab] OR "receptor binding"[tiab] OR evolution[tiab] OR "positive selection"[tiab])'
+  grupo_CD4:
+    tipo: grupo
+    term: 'CD4[tiab] AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("entry receptor"[tiab] OR "receptor usage"[tiab] OR coreceptor[tiab] OR "co-receptor"[tiab] OR "species-specific"[tiab] OR "positive selection"[tiab] OR "host range"[tiab] OR "cross-species"[tiab])'
+  grupo_DDX58_MAVS:
+    tipo: grupo
+    term: '(DDX58[tiab] OR "RIG-I"[tiab] OR RIGI[tiab] OR MAVS[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("positive selection"[tiab] OR evolution[tiab] OR antiviral[tiab] OR interferon[tiab])'
+  complementaria_Ateles:
+    tipo: complementaria
+    term: '(Ateles[tiab] OR "spider monkey"[tiab] OR "spider monkeys"[tiab] OR Atelidae[tiab]) AND (immun*[tiab] OR virus[tiab] OR viral[tiab] OR pathogen*[tiab] OR "Toll-like"[tiab] OR MHC[tiab])'
