@@ -2,7 +2,7 @@ name: ateles_seleccion
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - paml
   - hyphy

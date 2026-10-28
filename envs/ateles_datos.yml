@@ -2,12 +2,13 @@ name: ateles_datos
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - ncbi-datasets-cli
   - blast
   - diamond
   - biopython
+  - pyyaml
   - gffread
   - gffutils
   - pyfaidx

@@ -2,7 +2,7 @@ name: ateles_busco
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - _openmp_mutex=4.5
   - _python_abi3_support=1.0

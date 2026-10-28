@@ -2,7 +2,7 @@ name: ateles_r
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - _openmp_mutex=4.5
   - _r-mutex=1.0.1

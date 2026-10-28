@@ -2,7 +2,7 @@ name: ateles_seleccion
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - _openmp_mutex=4.5
   - biopython=1.88

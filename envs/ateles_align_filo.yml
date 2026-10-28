@@ -2,7 +2,7 @@ name: ateles_align_filo
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - mafft
   - trimal

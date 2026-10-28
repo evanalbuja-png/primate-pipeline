@@ -2,7 +2,7 @@ name: ateles_r
 channels:
   - conda-forge
   - bioconda
-  - defaults
+  - nodefaults
 dependencies:
   - r-base
   - r-ggplot2
