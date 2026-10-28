@@ -9,7 +9,7 @@
 
 ## Estado actual
 
-**Semana 1 completada** — Entorno de análisis reproducible configurado.
+**Semana 1 completada** (etiqueta v0.1.1-semana1). **Semana 2 en curso:** revisión bibliográfica sistematizada (PubMed con Bio.Entrez y Snakemake; Web of Science y Google Scholar manuales; matriz de evidencia).
 
 ## Estructura del repositorio
 ateles_immune_genomics/
@@ -17,7 +17,7 @@ ateles_immune_genomics/
 ├── envs/                   # Definiciones de entornos conda (YAML + locks)
 ├── workflow/
 │   ├── Snakefile           # Flujo principal
-│   ├── rules/              # Reglas adicionales (futuras)
+│   ├── rules/              # Reglas por módulo (pubmed.smk)
 │   ├── scripts/            # Scripts auxiliares
 │   └── profiles/default/   # Perfil de ejecución
 ├── data/                   # Datos (no versionados)
@@ -29,7 +29,7 @@ ateles_immune_genomics/
 
 ## Entornos conda
 
-Se utilizan cinco entornos aislados:
+Se utilizan seis entornos aislados:
 
 | Entorno            | Propósito                              |
 |--------------------|----------------------------------------|
@@ -38,6 +38,7 @@ Se utilizan cinco entornos aislados:
 | `ateles_seleccion` | PAML y HyPhy                           |
 | `ateles_r`         | Visualización y análisis en R          |
 | `ateles_busco`     | Evaluación de completitud genómica     |
+| `ateles_pubmed`      | Reglas de búsqueda PubMed (versiones fijas)     |
 
 ### Recrear los entornos
 

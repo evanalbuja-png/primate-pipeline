@@ -65,3 +65,8 @@ Desviaciones adicionales registradas:
 - Fase A: la pasada del 22-oct se descarto porque no se pudo verificar que cadenas uso; la oficial es la del 27-oct, con cadenas validadas. Los conteos coinciden salvo +1 en las dos de ACE2.
 - Fase B: 15 consultas, 3489 PMIDs sumados, 2909 unicos.
 - Pendiente de verificar contra PubMed: PMID 32768453 (TLR7/TLR8 en Alouatta).
+
+## Semana 2: correccion de entornos (2026-10-27)
+- El entorno ateles_datos contenia 3 paquetes del canal comercial pkgs/main y su lock no se podia reconstruir sin defaults. Se recreo desde el yml con conda-forge y bioconda, se exporto un lock nuevo sin prefix, y se reconstruyo el entorno definitivo desde ese lock como prueba de reproducibilidad.
+- Se marcaron como vigentes (snakemake --touch) las salidas de PubMed tras el cambio de definicion de entornos, para no repetir consultas a NCBI sin necesidad. verificar_entorno se re-ejecuto.
+- El commit 452e08b de esta semana incluia un lock de ateles_datos que no se reconstruia; se corrige en el commit siguiente (sin reescribir historia).
