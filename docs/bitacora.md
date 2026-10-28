@@ -46,3 +46,22 @@
 ### Próximos pasos (Semana 2)
 - Revisión bibliográfica sistematizada.
 - Descarga y evaluación de calidad del genoma de *Ateles fusciceps* (BUSCO 5.8.3, linaje `primates_odb12.2`).
+
+### Actualización 2026-10-21 (inicio Semana 2 — Paso 0)
+
+Desviaciones adicionales registradas:
+
+| Fecha      | Desviación                                      | Detalle / justificación |
+|------------|-------------------------------------------------|-------------------------|
+| 2026-10-21 | OrthoFinder 3.1.5 en lugar de v2                | Versión actual en bioconda (aceptada). Citar OrthoFinder 3 además de Emms & Kelly (2019) en el manuscrito; verificar la referencia oficial de la v3. Comando verificado: `-S diamond` es el default. |
+| 2026-10-21 | Binario IQ-TREE = `iqtree3`                     | La instalación de IQ-TREE 3.1.4 expone el ejecutable `iqtree3` (no `iqtree2`). Las reglas futuras de Snakemake deben invocar `iqtree3`. |
+| 2026-10-21 | BUSCO: pendiente verificación `primates_odb10`  | Propuesta original: linaje `primates_odb10`. Con BUSCO 5.8.3 el dataset listado es `primates_odb12.2`. **No se acepta aún odb12.2.** Pendiente Semana 3: verificar si se puede descargar/usar `primates_odb10` o documentar la justificación formal del cambio a odb12.2 ante el revisor. |
+
+
+## Semana 2: decisiones y desviaciones (2026-10-27)
+- Canales conda: el archivo ~/.condarc tenia defaults primero (canal comercial de Anaconda) con prioridad estricta, y el lock de ateles_datos no se podia reconstruir (ca-certificates 2026.10.20 solo existe en conda-forge). Se corrigio ~/.condarc (conda-forge, bioconda) y los envs/*.yml pasan a nodefaults.
+- envs/ateles_pubmed.yml (python 3.15.2, biopython 1.88, pyyaml 6.0.3): entorno minimo con versiones fijas para las reglas de PubMed.
+- PubMed se consulta con Bio.Entrez y no con Entrez Direct: asi se guardan QueryTranslation, ErrorList y WarningList, y la cadena de consulta no pasa por el shell.
+- Fase A: la pasada del 22-oct se descarto porque no se pudo verificar que cadenas uso; la oficial es la del 27-oct, con cadenas validadas. Los conteos coinciden salvo +1 en las dos de ACE2.
+- Fase B: 15 consultas, 3489 PMIDs sumados, 2909 unicos.
+- Pendiente de verificar contra PubMed: PMID 32768453 (TLR7/TLR8 en Alouatta).
