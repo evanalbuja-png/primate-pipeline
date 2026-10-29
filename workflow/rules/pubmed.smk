@@ -67,3 +67,34 @@ rule busqueda_pubmed:
             --max-fetch {MAX_FETCH} \
             > {log} 2>&1
         """
+
+rule archivar_pubmed:
+    """Copia artefactos ligeros a docs/bibliografia/pubmed/<id>/ (sin medline)."""
+    input:
+        esearch = expand(f"{OUTDIR}/{{qid}}/esearch.json", qid=QUERY_IDS),
+    output:
+        marker = "docs/bibliografia/pubmed/.archivado"
+    params:
+        qids = QUERY_IDS,
+        outdir = OUTDIR,
+    run:
+        import shutil
+        from pathlib import Path
+        dest_root = Path("docs/bibliografia/pubmed")
+        dest_root.mkdir(parents=True, exist_ok=True)
+        for qid in params.qids:
+            src = Path(params.outdir) / qid
+            if not (src / "esearch.json").exists():
+                continue
+            dst = dest_root / qid
+            dst.mkdir(parents=True, exist_ok=True)
+            for name in ["query.txt", "count.txt", "esearch.json", "pmids.txt"]:
+                f = src / name
+                if f.exists():
+                    shutil.copy2(f, dst / name)
+        # anclas si existen
+        for name in ["anclas_doi_pmid.json", "anclas_recall.json", "validacion_consultas.tsv", "resumen_busquedas.tsv"]:
+            f = Path(params.outdir) / name
+            if f.exists():
+                shutil.copy2(f, dest_root / name)
+        Path(output.marker).write_text("ok\n", encoding="utf-8")
