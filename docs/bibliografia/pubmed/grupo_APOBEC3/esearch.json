@@ -1,0 +1,12 @@
+{
+  "id": "grupo_APOBEC3",
+  "tipo": "grupo",
+  "fecha_utc": "2026-10-28T02:06:40.550803+00:00",
+  "biopython_version": "1.88",
+  "sha256": "2bcbdaaa7d148fc7479bdfd84bccd291c3212d87ebe8cf1851c0cc98949addcc",
+  "term": "(APOBEC3G[tiab] OR APOBEC3H[tiab] OR APOBEC3[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab]) AND (\"positive selection\"[tiab] OR evolution[tiab] OR restriction[tiab] OR deaminas*[tiab])",
+  "Count": 135,
+  "QueryTranslation": "(\"APOBEC3G\"[Title/Abstract] OR \"APOBEC3H\"[Title/Abstract] OR \"APOBEC3\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract]) AND (\"positive selection\"[Title/Abstract] OR \"evolution\"[Title/Abstract] OR \"restriction\"[Title/Abstract] OR \"deaminas*\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

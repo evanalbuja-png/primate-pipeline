@@ -1,0 +1,12 @@
+{
+  "id": "base4_literal",
+  "tipo": "literal",
+  "fecha_utc": "2026-10-28T02:06:37.014863+00:00",
+  "biopython_version": "1.88",
+  "sha256": "6f0f92eed834e5bf637ac4d5c4a661156382c8fc235003887ef3b8c14e43fbef",
+  "term": "TRIM5 evolution New World monkeys",
+  "Count": 13,
+  "QueryTranslation": "\"TRIM5\"[All Fields] AND (\"biological evolution\"[MeSH Terms] OR (\"biological\"[All Fields] AND \"evolution\"[All Fields]) OR \"biological evolution\"[All Fields] OR \"evolution\"[All Fields] OR \"evolution s\"[All Fields] OR \"evolutional\"[All Fields] OR \"evolutions\"[All Fields] OR \"evolutive\"[All Fields] OR \"evolutivity\"[All Fields]) AND (\"platyrrhini\"[MeSH Terms] OR \"platyrrhini\"[All Fields] OR (\"new\"[All Fields] AND \"world\"[All Fields] AND \"monkeys\"[All Fields]) OR \"new world monkeys\"[All Fields])",
+  "ErrorList": {},
+  "WarningList": {}
+}

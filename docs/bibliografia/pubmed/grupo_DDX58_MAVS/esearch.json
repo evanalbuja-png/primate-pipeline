@@ -1,0 +1,12 @@
+{
+  "id": "grupo_DDX58_MAVS",
+  "tipo": "grupo",
+  "fecha_utc": "2026-10-28T02:06:35.281099+00:00",
+  "biopython_version": "1.88",
+  "sha256": "498ba63fecd656f3c29fd5523989b15e273ad189c2f57a15a898eb7f3e2120d2",
+  "term": "(DDX58[tiab] OR \"RIG-I\"[tiab] OR RIGI[tiab] OR MAVS[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab]) AND (\"positive selection\"[tiab] OR evolution[tiab] OR antiviral[tiab] OR interferon[tiab])",
+  "Count": 28,
+  "QueryTranslation": "(\"DDX58\"[Title/Abstract] OR \"RIG-I\"[Title/Abstract] OR \"RIGI\"[Title/Abstract] OR \"MAVS\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract]) AND (\"positive selection\"[Title/Abstract] OR \"evolution\"[Title/Abstract] OR \"antiviral\"[Title/Abstract] OR \"interferon\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

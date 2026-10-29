@@ -1,0 +1,12 @@
+{
+  "id": "plat_receptores",
+  "tipo": "complementaria",
+  "fecha_utc": "2026-10-28T14:54:43.099944+00:00",
+  "biopython_version": "1.88",
+  "sha256": "c1bfaefbabe11c42935d07ff6c992bb43431e61596ad9f8bb2ad1ef5d47381a0",
+  "term": "(Alouatta[tiab] OR Aotus[tiab] OR Ateles[tiab] OR Callithrix[tiab] OR Cebus[tiab] OR Sapajus[tiab] OR Saimiri[tiab] OR Saguinus[tiab] OR Callicebus[tiab] OR Plecturocebus[tiab] OR Lagothrix[tiab] OR Brachyteles[tiab] OR Pithecia[tiab] OR marmoset*[tiab] OR tamarin*[tiab] OR capuchin*[tiab] OR \"howler monkey\"[tiab] OR \"howler monkeys\"[tiab] OR \"owl monkey\"[tiab] OR \"owl monkeys\"[tiab] OR \"squirrel monkey\"[tiab] OR \"squirrel monkeys\"[tiab] OR \"spider monkey\"[tiab] OR \"spider monkeys\"[tiab] OR \"woolly monkey\"[tiab] OR \"woolly monkeys\"[tiab] OR \"titi monkey\"[tiab] OR \"titi monkeys\"[tiab] OR platyrrhine*[tiab]) AND (ACE2[tiab] OR \"angiotensin-converting enzyme 2\"[tiab] OR CD4[tiab])",
+  "Count": 164,
+  "QueryTranslation": "(\"Alouatta\"[Title/Abstract] OR \"Aotus\"[Title/Abstract] OR \"Ateles\"[Title/Abstract] OR \"Callithrix\"[Title/Abstract] OR \"Cebus\"[Title/Abstract] OR \"Sapajus\"[Title/Abstract] OR \"Saimiri\"[Title/Abstract] OR \"Saguinus\"[Title/Abstract] OR \"Callicebus\"[Title/Abstract] OR \"Plecturocebus\"[Title/Abstract] OR \"Lagothrix\"[Title/Abstract] OR \"Brachyteles\"[Title/Abstract] OR \"Pithecia\"[Title/Abstract] OR \"marmoset*\"[Title/Abstract] OR \"tamarin*\"[Title/Abstract] OR \"capuchin*\"[Title/Abstract] OR \"howler monkey\"[Title/Abstract] OR \"howler monkeys\"[Title/Abstract] OR \"owl monkey\"[Title/Abstract] OR \"owl monkeys\"[Title/Abstract] OR \"squirrel monkey\"[Title/Abstract] OR \"squirrel monkeys\"[Title/Abstract] OR \"spider monkey\"[Title/Abstract] OR \"spider monkeys\"[Title/Abstract] OR \"woolly monkey\"[Title/Abstract] OR \"woolly monkeys\"[Title/Abstract] OR \"titi monkey\"[Title/Abstract] OR \"titi monkeys\"[Title/Abstract] OR \"platyrrhine*\"[Title/Abstract]) AND (\"ACE2\"[Title/Abstract] OR \"angiotensin-converting enzyme 2\"[Title/Abstract] OR \"CD4\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

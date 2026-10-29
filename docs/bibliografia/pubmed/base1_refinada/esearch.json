@@ -1,0 +1,12 @@
+{
+  "id": "base1_refinada",
+  "tipo": "refinada",
+  "fecha_utc": "2026-10-28T02:06:51.249885+00:00",
+  "biopython_version": "1.88",
+  "sha256": "75da70847b23bc599770623e1b0c073a747a7c7bf6402d70c70d65add8ce837b",
+  "term": "(\"innate immunity\"[tiab] OR \"innate immune\"[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab] OR Neotropical[tiab]) AND (\"positive selection\"[tiab] OR \"adaptive evolution\"[tiab] OR \"dN/dS\"[tiab])",
+  "Count": 59,
+  "QueryTranslation": "(\"innate immunity\"[Title/Abstract] OR \"innate immune\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract] OR \"Neotropical\"[Title/Abstract]) AND (\"positive selection\"[Title/Abstract] OR \"adaptive evolution\"[Title/Abstract] OR \"dN/dS\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

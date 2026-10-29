@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sawyer_2005",
+    "doi": "10.1073/pnas.0409853102",
+    "pmids": [
+      "15689398"
+    ],
+    "count": 1
+  },
+  {
+    "name": "Wlasiuk_Nachman_2010",
+    "doi": "10.1093/molbev/msq104",
+    "pmids": [
+      "20410160"
+    ],
+    "count": 1
+  },
+  {
+    "name": "Damas_2020",
+    "doi": "10.1073/pnas.2010146117",
+    "pmids": [
+      "32826334"
+    ],
+    "count": 1
+  },
+  {
+    "name": "Sironi_2015",
+    "doi": "10.1038/nrg3905",
+    "pmids": [
+      "25783448"
+    ],
+    "count": 1
+  },
+  {
+    "name": "Enard_2016",
+    "doi": "10.7554/eLife.12469",
+    "pmids": [
+      "27187613"
+    ],
+    "count": 1
+  }
+]

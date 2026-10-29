@@ -1,0 +1,12 @@
+{
+  "id": "base3_refinada",
+  "tipo": "refinada",
+  "fecha_utc": "2026-10-28T02:06:47.711134+00:00",
+  "biopython_version": "1.88",
+  "sha256": "4ba97a6012cf2fb18620924205f9536e702643d87c4c601396a642836b3fa206",
+  "term": "(ACE2[tiab] OR \"angiotensin-converting enzyme 2\"[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab] OR \"host range\"[tiab] OR \"cross-species\"[tiab] OR vertebrate*[tiab] OR \"animal species\"[tiab]) AND (coronavirus*[tiab] OR \"SARS-CoV-2\"[tiab] OR \"SARS-CoV\"[tiab] OR betacoronavirus*[tiab])",
+  "Count": 353,
+  "QueryTranslation": "(\"ACE2\"[Title/Abstract] OR \"angiotensin-converting enzyme 2\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract] OR \"host range\"[Title/Abstract] OR \"cross-species\"[Title/Abstract] OR \"vertebrate*\"[Title/Abstract] OR \"animal species\"[Title/Abstract]) AND (\"coronavirus*\"[Title/Abstract] OR \"SARS-CoV-2\"[Title/Abstract] OR \"SARS-CoV\"[Title/Abstract] OR \"betacoronavirus*\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

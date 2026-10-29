@@ -1,0 +1,12 @@
+{
+  "id": "base1_literal",
+  "tipo": "literal",
+  "fecha_utc": "2026-10-28T02:06:46.044173+00:00",
+  "biopython_version": "1.88",
+  "sha256": "aaefc00130b351e18d2e5f25a3a5089688fcb91240352c2510a9ac4d39d7e343",
+  "term": "innate immunity primates positive selection",
+  "Count": 837,
+  "QueryTranslation": "(\"immunity, innate\"[MeSH Terms] OR (\"immunity\"[All Fields] AND \"innate\"[All Fields]) OR \"innate immunity\"[All Fields] OR (\"innate\"[All Fields] AND \"immunity\"[All Fields])) AND (\"primate s\"[All Fields] OR \"primates\"[MeSH Terms] OR \"primates\"[All Fields] OR \"primate\"[All Fields]) AND (\"positive\"[All Fields] OR \"positively\"[All Fields] OR \"positiveness\"[All Fields] OR \"positives\"[All Fields] OR \"positivities\"[All Fields] OR \"positivity\"[All Fields]) AND (\"select\"[All Fields] OR \"selectability\"[All Fields] OR \"selectable\"[All Fields] OR \"selected\"[All Fields] OR \"selecting\"[All Fields] OR \"selection s\"[All Fields] OR \"selection, genetic\"[MeSH Terms] OR (\"selection\"[All Fields] AND \"genetic\"[All Fields]) OR \"genetic selection\"[All Fields] OR \"selection\"[All Fields] OR \"selectional\"[All Fields] OR \"selections\"[All Fields] OR \"selective\"[All Fields] OR \"selectively\"[All Fields] OR \"selectives\"[All Fields] OR \"selectivities\"[All Fields] OR \"selectivity\"[All Fields] OR \"selects\"[All Fields])",
+  "ErrorList": {},
+  "WarningList": {}
+}

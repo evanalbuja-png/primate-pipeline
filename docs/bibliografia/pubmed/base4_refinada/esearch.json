@@ -1,0 +1,12 @@
+{
+  "id": "base4_refinada",
+  "tipo": "refinada",
+  "fecha_utc": "2026-10-28T02:06:42.470970+00:00",
+  "biopython_version": "1.88",
+  "sha256": "6ce8c54317d1641647948362121f15dd976a481b645b394a58d52ee654d41b30",
+  "term": "(TRIM5[tiab] OR TRIM5alpha[tiab] OR \"TRIM5 alpha\"[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab] OR Neotropical[tiab]) AND (evolution[tiab] OR \"positive selection\"[tiab] OR \"adaptive evolution\"[tiab] OR phylogen*[tiab] OR restriction[tiab])",
+  "Count": 143,
+  "QueryTranslation": "(\"TRIM5\"[Title/Abstract] OR \"TRIM5alpha\"[Title/Abstract] OR \"TRIM5 alpha\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract] OR \"Neotropical\"[Title/Abstract]) AND (\"evolution\"[Title/Abstract] OR \"positive selection\"[Title/Abstract] OR \"adaptive evolution\"[Title/Abstract] OR \"phylogen*\"[Title/Abstract] OR \"restriction\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

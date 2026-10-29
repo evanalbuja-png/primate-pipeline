@@ -70,3 +70,21 @@ Desviaciones adicionales registradas:
 - El entorno ateles_datos contenia 3 paquetes del canal comercial pkgs/main y su lock no se podia reconstruir sin defaults. Se recreo desde el yml con conda-forge y bioconda, se exporto un lock nuevo sin prefix, y se reconstruyo el entorno definitivo desde ese lock como prueba de reproducibilidad.
 - Se marcaron como vigentes (snakemake --touch) las salidas de PubMed tras el cambio de definicion de entornos, para no repetir consultas a NCBI sin necesidad. verificar_entorno se re-ejecuto.
 - El commit 452e08b de esta semana incluia un lock de ateles_datos que no se reconstruia; se corrige en el commit siguiente (sin reescribir historia).
+
+
+## 2026-10-28 — Semana 2: ampliación de recall (consultas plat_*)
+
+**Motivo.** Las consultas de grupo exigían `primate*`, `"New World monkey"` o `Platyrrhini` en título/resumen. Muchos estudios en platirrinos nombran solo el género o el nombre común (p. ej. *Alouatta*, howler monkeys). Ejemplo: Torosin et al. 2020 (*Am J Phys Anthropol* 173(1):50-60; PMID 32583896) sobre variantes de TLR7 en *Alouatta guariba clamitans* (Argentina, exposición a fiebre amarilla) **no** aparecía en `grupo_TLR` y sí en `plat_TLR_sensores`.
+
+**Qué se hizo.** Se añadieron tres consultas `tipo: complementaria` que no sustituyen las 4 cadenas de la propuesta:
+- `plat_TLR_sensores` — Count **21**
+- `plat_restriccion` — Count **60**
+- `plat_receptores` — Count **164**
+
+Lista de géneros/nombres comunes de platirrinos + genes diana correspondientes. Validador 19/19 ok. QueryTranslation sin PhraseNotFound.
+
+**Anclas de recall.** Torosin 2020 capturado por `plat_TLR_sensores`. Genoma *Ateles fusciceps* (DOI 10.1093/g3journal/jkae014, PMID 38244218) no aparece en las 18 (no menciona genes diana en tiab).
+
+**Implementación.** Cambio de EDirect a Bio.Entrez para obtener QueryTranslation/ErrorList/WarningList de forma fiable; validador de cadenas antes de NCBI; env `ateles_pubmed.yml` porque el lock de `ateles_datos` falló al recrearse en Snakemake por prioridad de canales.
+
+**Conteos oficiales.** Segunda pasada (27-oct) con cadenas validadas es la oficial. No se pudo verificar qué cadenas usó la primera pasada (carpeta borrada). Los conteos de ambas coinciden salvo +1 en las dos de ACE2.

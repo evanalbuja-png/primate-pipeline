@@ -1,0 +1,12 @@
+{
+  "id": "base3_literal",
+  "tipo": "literal",
+  "fecha_utc": "2026-10-28T02:06:48.766621+00:00",
+  "biopython_version": "1.88",
+  "sha256": "8d55755484cbeb763c07d7ed3b2b9bd31fde3e72aba5b1d7ee27b95ef91cd552",
+  "term": "ACE2 primate coronavirus susceptibility",
+  "Count": 1061,
+  "QueryTranslation": "(\"ace2 protein human\"[Supplementary Concept] OR \"ace2 protein human\"[All Fields] OR \"ace2\"[All Fields]) AND (\"primate s\"[All Fields] OR \"primates\"[MeSH Terms] OR \"primates\"[All Fields] OR \"primate\"[All Fields]) AND (\"coronavirus\"[MeSH Terms] OR \"coronavirus\"[All Fields] OR \"coronaviruses\"[All Fields]) AND (\"disease susceptibility\"[MeSH Terms] OR (\"disease\"[All Fields] AND \"susceptibility\"[All Fields]) OR \"disease susceptibility\"[All Fields] OR \"susceptibilities\"[All Fields] OR \"susceptibility\"[All Fields] OR \"susceptible\"[All Fields] OR \"susceptibles\"[All Fields] OR \"susceptive\"[All Fields] OR \"susceptivity\"[All Fields])",
+  "ErrorList": {},
+  "WarningList": {}
+}

@@ -1,0 +1,12 @@
+{
+  "id": "grupo_TLR",
+  "tipo": "grupo",
+  "fecha_utc": "2026-10-28T02:06:38.229554+00:00",
+  "biopython_version": "1.88",
+  "sha256": "955edd464b06c0390a78960ab7216fe2d6553d9ac9519ef7fa70339f44b2244a",
+  "term": "(TLR1[tiab] OR TLR2[tiab] OR TLR3[tiab] OR TLR4[tiab] OR TLR7[tiab] OR TLR8[tiab] OR TLR9[tiab] OR \"Toll-like receptor\"[tiab] OR \"Toll-like receptors\"[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab]) AND (\"positive selection\"[tiab] OR evolution[tiab] OR phylogen*[tiab] OR \"dN/dS\"[tiab])",
+  "Count": 31,
+  "QueryTranslation": "(\"TLR1\"[Title/Abstract] OR \"TLR2\"[Title/Abstract] OR \"TLR3\"[Title/Abstract] OR \"TLR4\"[Title/Abstract] OR \"TLR7\"[Title/Abstract] OR \"TLR8\"[Title/Abstract] OR \"TLR9\"[Title/Abstract] OR \"Toll-like receptor\"[Title/Abstract] OR \"Toll-like receptors\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract]) AND (\"positive selection\"[Title/Abstract] OR \"evolution\"[Title/Abstract] OR \"phylogen*\"[Title/Abstract] OR \"dN/dS\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

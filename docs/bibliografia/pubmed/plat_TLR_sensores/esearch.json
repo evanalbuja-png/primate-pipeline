@@ -1,0 +1,12 @@
+{
+  "id": "plat_TLR_sensores",
+  "tipo": "complementaria",
+  "fecha_utc": "2026-10-28T14:54:41.995603+00:00",
+  "biopython_version": "1.88",
+  "sha256": "cc0d26c2abb68001159d6f1397718844a1b070b31876052a9bd9839b4db0ac38",
+  "term": "(Alouatta[tiab] OR Aotus[tiab] OR Ateles[tiab] OR Callithrix[tiab] OR Cebus[tiab] OR Sapajus[tiab] OR Saimiri[tiab] OR Saguinus[tiab] OR Callicebus[tiab] OR Plecturocebus[tiab] OR Lagothrix[tiab] OR Brachyteles[tiab] OR Pithecia[tiab] OR marmoset*[tiab] OR tamarin*[tiab] OR capuchin*[tiab] OR \"howler monkey\"[tiab] OR \"howler monkeys\"[tiab] OR \"owl monkey\"[tiab] OR \"owl monkeys\"[tiab] OR \"squirrel monkey\"[tiab] OR \"squirrel monkeys\"[tiab] OR \"spider monkey\"[tiab] OR \"spider monkeys\"[tiab] OR \"woolly monkey\"[tiab] OR \"woolly monkeys\"[tiab] OR \"titi monkey\"[tiab] OR \"titi monkeys\"[tiab] OR platyrrhine*[tiab]) AND (TLR1[tiab] OR TLR2[tiab] OR TLR3[tiab] OR TLR4[tiab] OR TLR7[tiab] OR TLR8[tiab] OR TLR9[tiab] OR \"Toll-like receptor\"[tiab] OR \"Toll-like receptors\"[tiab] OR DDX58[tiab] OR \"RIG-I\"[tiab] OR MAVS[tiab])",
+  "Count": 21,
+  "QueryTranslation": "(\"Alouatta\"[Title/Abstract] OR \"Aotus\"[Title/Abstract] OR \"Ateles\"[Title/Abstract] OR \"Callithrix\"[Title/Abstract] OR \"Cebus\"[Title/Abstract] OR \"Sapajus\"[Title/Abstract] OR \"Saimiri\"[Title/Abstract] OR \"Saguinus\"[Title/Abstract] OR \"Callicebus\"[Title/Abstract] OR \"Plecturocebus\"[Title/Abstract] OR \"Lagothrix\"[Title/Abstract] OR \"Brachyteles\"[Title/Abstract] OR \"Pithecia\"[Title/Abstract] OR \"marmoset*\"[Title/Abstract] OR \"tamarin*\"[Title/Abstract] OR \"capuchin*\"[Title/Abstract] OR \"howler monkey\"[Title/Abstract] OR \"howler monkeys\"[Title/Abstract] OR \"owl monkey\"[Title/Abstract] OR \"owl monkeys\"[Title/Abstract] OR \"squirrel monkey\"[Title/Abstract] OR \"squirrel monkeys\"[Title/Abstract] OR \"spider monkey\"[Title/Abstract] OR \"spider monkeys\"[Title/Abstract] OR \"woolly monkey\"[Title/Abstract] OR \"woolly monkeys\"[Title/Abstract] OR \"titi monkey\"[Title/Abstract] OR \"titi monkeys\"[Title/Abstract] OR \"platyrrhine*\"[Title/Abstract]) AND (\"TLR1\"[Title/Abstract] OR \"TLR2\"[Title/Abstract] OR \"TLR3\"[Title/Abstract] OR \"TLR4\"[Title/Abstract] OR \"TLR7\"[Title/Abstract] OR \"TLR8\"[Title/Abstract] OR \"TLR9\"[Title/Abstract] OR \"Toll-like receptor\"[Title/Abstract] OR \"Toll-like receptors\"[Title/Abstract] OR \"DDX58\"[Title/Abstract] OR \"RIG-I\"[Title/Abstract] OR \"MAVS\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

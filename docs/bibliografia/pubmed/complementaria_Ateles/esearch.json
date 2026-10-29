@@ -1,0 +1,12 @@
+{
+  "id": "complementaria_Ateles",
+  "tipo": "complementaria",
+  "fecha_utc": "2026-10-28T02:06:48.951583+00:00",
+  "biopython_version": "1.88",
+  "sha256": "035ff3b4f5e9899eddeb1ec85006a42afce38a4d3a6d6900db04f2acf1212bc4",
+  "term": "(Ateles[tiab] OR \"spider monkey\"[tiab] OR \"spider monkeys\"[tiab] OR Atelidae[tiab]) AND (immun*[tiab] OR virus[tiab] OR viral[tiab] OR pathogen*[tiab] OR \"Toll-like\"[tiab] OR MHC[tiab])",
+  "Count": 142,
+  "QueryTranslation": "(\"Ateles\"[Title/Abstract] OR \"spider monkey\"[Title/Abstract] OR \"spider monkeys\"[Title/Abstract] OR \"Atelidae\"[Title/Abstract]) AND (\"immun*\"[Title/Abstract] OR \"virus\"[Title/Abstract] OR \"viral\"[Title/Abstract] OR \"pathogen*\"[Title/Abstract] OR \"Toll-like\"[Title/Abstract] OR \"MHC\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

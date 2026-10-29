@@ -1,0 +1,12 @@
+{
+  "id": "grupo_ACE2",
+  "tipo": "grupo",
+  "fecha_utc": "2026-10-28T02:06:44.834757+00:00",
+  "biopython_version": "1.88",
+  "sha256": "264fa88ccc85b8050969f9e44df95a417a9d703d68c46a9eb7b58318f067b14d",
+  "term": "(ACE2[tiab] OR \"angiotensin-converting enzyme 2\"[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab]) AND (coronavirus*[tiab] OR \"SARS-CoV-2\"[tiab] OR \"SARS-CoV\"[tiab] OR susceptibility[tiab] OR \"receptor binding\"[tiab] OR evolution[tiab] OR \"positive selection\"[tiab])",
+  "Count": 103,
+  "QueryTranslation": "(\"ACE2\"[Title/Abstract] OR \"angiotensin-converting enzyme 2\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract]) AND (\"coronavirus*\"[Title/Abstract] OR \"SARS-CoV-2\"[Title/Abstract] OR \"SARS-CoV\"[Title/Abstract] OR \"susceptibility\"[Title/Abstract] OR \"receptor binding\"[Title/Abstract] OR \"evolution\"[Title/Abstract] OR \"positive selection\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

@@ -1,0 +1,18 @@
+{
+  "id": "base2_literal",
+  "tipo": "literal",
+  "fecha_utc": "2026-10-28T02:06:43.718601+00:00",
+  "biopython_version": "1.88",
+  "sha256": "6bf49cf6bbf3710aa6533427576889fd7bbd1973cf96c9aa591fb55cf46ace60",
+  "term": "antiviral restriction factors Neotropical primates",
+  "Count": 0,
+  "QueryTranslation": "(\"antiviral restriction factors\"[Supplementary Concept] OR \"antiviral restriction factors\"[All Fields] OR \"antiviral restriction factors\"[MeSH Terms] OR (\"antiviral\"[All Fields] AND \"restriction\"[All Fields] AND \"factors\"[All Fields])) AND ((\"neotropical\"[All Fields] AND \"primates\"[All Fields]) OR \"neotropical primates\"[All Fields])",
+  "ErrorList": {},
+  "WarningList": {
+    "OutputMessage": [
+      "No items found."
+    ],
+    "PhraseIgnored": [],
+    "QuotedPhraseNotFound": []
+  }
+}

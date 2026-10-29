@@ -1,0 +1,12 @@
+{
+  "id": "base2_refinada",
+  "tipo": "refinada",
+  "fecha_utc": "2026-10-28T02:06:39.380579+00:00",
+  "biopython_version": "1.88",
+  "sha256": "f5f1469e617d5b4904340e1595357670b6dab7f56782bd01c0a68393d14ae0c2",
+  "term": "(\"restriction factor\"[tiab] OR \"restriction factors\"[tiab] OR TRIM5[tiab] OR APOBEC3[tiab] OR BST2[tiab] OR tetherin[tiab] OR MX1[tiab] OR MX2[tiab] OR OAS1[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab] OR Neotropical[tiab]) AND (antiviral[tiab] OR virus[tiab] OR retrovirus[tiab])",
+  "Count": 348,
+  "QueryTranslation": "(\"restriction factor\"[Title/Abstract] OR \"restriction factors\"[Title/Abstract] OR \"TRIM5\"[Title/Abstract] OR \"APOBEC3\"[Title/Abstract] OR \"BST2\"[Title/Abstract] OR \"tetherin\"[Title/Abstract] OR \"MX1\"[Title/Abstract] OR \"MX2\"[Title/Abstract] OR \"OAS1\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract] OR \"Neotropical\"[Title/Abstract]) AND (\"antiviral\"[Title/Abstract] OR \"virus\"[Title/Abstract] OR \"retrovirus\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}

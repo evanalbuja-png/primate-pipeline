@@ -1,0 +1,1 @@
+(BST2[tiab] OR tetherin[tiab]) AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("positive selection"[tiab] OR evolution[tiab] OR restriction[tiab])

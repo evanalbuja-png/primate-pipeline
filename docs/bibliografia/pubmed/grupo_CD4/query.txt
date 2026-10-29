@@ -1,0 +1,1 @@
+CD4[tiab] AND (primate*[tiab] OR "New World monkey"[tiab] OR "New World monkeys"[tiab] OR Platyrrhini[tiab]) AND ("entry receptor"[tiab] OR "receptor usage"[tiab] OR coreceptor[tiab] OR "co-receptor"[tiab] OR "species-specific"[tiab] OR "positive selection"[tiab] OR "host range"[tiab] OR "cross-species"[tiab])

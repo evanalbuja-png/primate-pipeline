@@ -1,0 +1,12 @@
+{
+  "id": "grupo_MX_OAS",
+  "tipo": "grupo",
+  "fecha_utc": "2026-10-28T02:06:50.087826+00:00",
+  "biopython_version": "1.88",
+  "sha256": "a60a0c9e5cde2720d4c9dc8c21c5a9b038930be8ce0ffc219ef894bd7f2b029e",
+  "term": "(MX1[tiab] OR MX2[tiab] OR OAS1[tiab] OR OAS2[tiab] OR \"myxovirus resistance\"[tiab] OR \"oligoadenylate synthetase\"[tiab]) AND (primate*[tiab] OR \"New World monkey\"[tiab] OR \"New World monkeys\"[tiab] OR Platyrrhini[tiab]) AND (\"positive selection\"[tiab] OR evolution[tiab] OR antiviral[tiab])",
+  "Count": 27,
+  "QueryTranslation": "(\"MX1\"[Title/Abstract] OR \"MX2\"[Title/Abstract] OR \"OAS1\"[Title/Abstract] OR \"OAS2\"[Title/Abstract] OR \"myxovirus resistance\"[Title/Abstract] OR \"oligoadenylate synthetase\"[Title/Abstract]) AND (\"primate*\"[Title/Abstract] OR \"New World monkey\"[Title/Abstract] OR \"New World monkeys\"[Title/Abstract] OR \"Platyrrhini\"[Title/Abstract]) AND (\"positive selection\"[Title/Abstract] OR \"evolution\"[Title/Abstract] OR \"antiviral\"[Title/Abstract])",
+  "ErrorList": {},
+  "WarningList": {}
+}
