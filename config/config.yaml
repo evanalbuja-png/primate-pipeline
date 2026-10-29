@@ -114,3 +114,14 @@ pubmed_queries:
   complementaria_Ateles:
     tipo: complementaria
     term: '(Ateles[tiab] OR "spider monkey"[tiab] OR "spider monkeys"[tiab] OR Atelidae[tiab]) AND (immun*[tiab] OR virus[tiab] OR viral[tiab] OR pathogen*[tiab] OR "Toll-like"[tiab] OR MHC[tiab])'
+
+  plat_TLR_sensores:
+    tipo: complementaria
+    term: '(Alouatta[tiab] OR Aotus[tiab] OR Ateles[tiab] OR Callithrix[tiab] OR Cebus[tiab] OR Sapajus[tiab] OR Saimiri[tiab] OR Saguinus[tiab] OR Callicebus[tiab] OR Plecturocebus[tiab] OR Lagothrix[tiab] OR Brachyteles[tiab] OR Pithecia[tiab] OR marmoset*[tiab] OR tamarin*[tiab] OR capuchin*[tiab] OR "howler monkey"[tiab] OR "howler monkeys"[tiab] OR "owl monkey"[tiab] OR "owl monkeys"[tiab] OR "squirrel monkey"[tiab] OR "squirrel monkeys"[tiab] OR "spider monkey"[tiab] OR "spider monkeys"[tiab] OR "woolly monkey"[tiab] OR "woolly monkeys"[tiab] OR "titi monkey"[tiab] OR "titi monkeys"[tiab] OR platyrrhine*[tiab]) AND (TLR1[tiab] OR TLR2[tiab] OR TLR3[tiab] OR TLR4[tiab] OR TLR7[tiab] OR TLR8[tiab] OR TLR9[tiab] OR "Toll-like receptor"[tiab] OR "Toll-like receptors"[tiab] OR DDX58[tiab] OR "RIG-I"[tiab] OR MAVS[tiab])'
+  plat_restriccion:
+    tipo: complementaria
+    term: '(Alouatta[tiab] OR Aotus[tiab] OR Ateles[tiab] OR Callithrix[tiab] OR Cebus[tiab] OR Sapajus[tiab] OR Saimiri[tiab] OR Saguinus[tiab] OR Callicebus[tiab] OR Plecturocebus[tiab] OR Lagothrix[tiab] OR Brachyteles[tiab] OR Pithecia[tiab] OR marmoset*[tiab] OR tamarin*[tiab] OR capuchin*[tiab] OR "howler monkey"[tiab] OR "howler monkeys"[tiab] OR "owl monkey"[tiab] OR "owl monkeys"[tiab] OR "squirrel monkey"[tiab] OR "squirrel monkeys"[tiab] OR "spider monkey"[tiab] OR "spider monkeys"[tiab] OR "woolly monkey"[tiab] OR "woolly monkeys"[tiab] OR "titi monkey"[tiab] OR "titi monkeys"[tiab] OR platyrrhine*[tiab]) AND (TRIM5[tiab] OR TRIM5alpha[tiab] OR "TRIM5 alpha"[tiab] OR APOBEC3G[tiab] OR APOBEC3H[tiab] OR APOBEC3[tiab] OR MX1[tiab] OR MX2[tiab] OR OAS1[tiab] OR OAS2[tiab] OR BST2[tiab] OR tetherin[tiab] OR "restriction factor"[tiab] OR "restriction factors"[tiab])'
+  plat_receptores:
+    tipo: complementaria
+    term: '(Alouatta[tiab] OR Aotus[tiab] OR Ateles[tiab] OR Callithrix[tiab] OR Cebus[tiab] OR Sapajus[tiab] OR Saimiri[tiab] OR Saguinus[tiab] OR Callicebus[tiab] OR Plecturocebus[tiab] OR Lagothrix[tiab] OR Brachyteles[tiab] OR Pithecia[tiab] OR marmoset*[tiab] OR tamarin*[tiab] OR capuchin*[tiab] OR "howler monkey"[tiab] OR "howler monkeys"[tiab] OR "owl monkey"[tiab] OR "owl monkeys"[tiab] OR "squirrel monkey"[tiab] OR "squirrel monkeys"[tiab] OR "spider monkey"[tiab] OR "spider monkeys"[tiab] OR "woolly monkey"[tiab] OR "woolly monkeys"[tiab] OR "titi monkey"[tiab] OR "titi monkeys"[tiab] OR platyrrhine*[tiab]) AND (ACE2[tiab] OR "angiotensin-converting enzyme 2"[tiab] OR CD4[tiab])'
+
