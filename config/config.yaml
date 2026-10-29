@@ -64,6 +64,9 @@ pubmed:
     - grupo_CD4
     - grupo_DDX58_MAVS
     - complementaria_Ateles
+    - plat_TLR_sensores
+    - plat_restriccion
+    - plat_receptores
 
 pubmed_queries:
   base1_literal:
