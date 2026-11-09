@@ -98,3 +98,26 @@ rule archivar_pubmed:
             if f.exists():
                 shutil.copy2(f, dest_root / name)
         Path(output.marker).write_text("ok\n", encoding="utf-8")
+
+rule cribado_etapa0:
+    input:
+        medlines = expand(f"{OUTDIR}/{{qid}}/records.medline", qid=config["pubmed"]["fetch"]),
+        esearch = expand(f"{OUTDIR}/{{qid}}/esearch.json", qid=config["pubmed"]["fetch"]),
+    output:
+        tsv = f"{OUTDIR}/cribado_base.tsv",
+        audit_p3 = f"{OUTDIR}/auditoria_P3b_100.tsv",
+        audit_p1 = f"{OUTDIR}/auditoria_P1_50.tsv",
+    conda:
+        "../../envs/ateles_pubmed.yml"
+    log:
+        "logs/pubmed/cribado_etapa0.log"
+    shell:
+        """
+        python workflow/scripts/cribado_etapa0.py \
+            --config config/config.yaml \
+            --root {OUTDIR} \
+            --output {output.tsv} \
+            --audit-p3 {output.audit_p3} \
+            --audit-p1 {output.audit_p1} \
+            > {log} 2>&1
+        """
