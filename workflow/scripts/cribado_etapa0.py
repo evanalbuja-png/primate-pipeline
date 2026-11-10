@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Etapa 0 del cribado bibliográfico — prefiltro PubMed (v2).
+"""Etapa 0 del cribado bibliográfico — prefiltro PubMed (v2.1).
 
-v2: filtra nombres de virus y líneas celulares antes de hit_primate_real /
+v2.1: filtra nombres de virus (incl. herpesvirus ateles); foco_ateles; P3d_ATELES y líneas celulares antes de hit_primate_real /
 hit_platirrino_real; prioridades P1a/P1b/P2a/P2b/P3a/P3c_ACE2/P3b.
 
 Uso:
@@ -21,7 +21,7 @@ from pathlib import Path
 
 from Bio import Medline
 
-VERSION = "v2"
+VERSION = "v2.1"
 SEED = 20261027
 ANCHORS = {
     "15689398": "Sawyer_2005",
@@ -39,7 +39,7 @@ RE_STRIP = re.compile(
     r"simian hemorrhagic|simian herpes\w*|simian sarcoma|"
     r"simian t[- ]lymphotropic|mason-pfizer monkey virus|"
     r"squirrel monkey retrovirus|monkeypox|monkey pox|"
-    r"herpesvirus aotus|\bsiv\w*\b|"
+    r"herpesvirus aotus|herpes\w*\s?virus ateles|ateline (alpha|gamma)?herpesvirus|\bhva\b|\bsiv\w*\b|"
     r"\bvero(\s?e6)?\b|\bcos-?7\b|llc-?mk2|\bma-?104\b|\bcv-?1\b|"
     r"\bbs-?c-?1\b|\bb95-?8\b|(african green )?monkey kidney|monkey cells?",
     re.I,
@@ -150,6 +150,11 @@ def flags_for(text: str) -> dict:
     hit_ace2 = bool(RE_ACE2.search(tm))
     hit_ace2_cross = hit_ace2 and bool(RE_ACE2_CROSS.search(tm))
 
+    RE_FOCO_ATELES = re.compile(
+        r"\bateles\b|spider monkeys?|atelidae|atelid\b|atelines?\b", re.I
+    )
+    foco_ateles = bool(RE_FOCO_ATELES.search(tm_clean))
+
     return dict(
         hit_platirrino=hit_plat,
         hit_primate=hit_prim,
@@ -162,6 +167,7 @@ def flags_for(text: str) -> dict:
         cd4_ambiguo=cd4_amb,
         hit_ace2=hit_ace2,
         hit_ace2_cross=hit_ace2_cross,
+        foco_ateles=foco_ateles,
         texto_match=tm,
         texto_match_clean=tm_clean,
     )
@@ -196,12 +202,18 @@ def assign_priority_v2(hit: dict, tipos: set) -> tuple[str, str]:
     else:
         pri = "P3b"
 
+    # P3d_ATELES: foco Ateles fuera de P1a/P2a
+    if hit.get("foco_ateles") and pri not in ("P1a", "P2a", "P1b", "P2b"):
+        pri = "P3d_ATELES"
+
     if hit["hit_platirrino_real"] and gen:
         nivel = "A"
     elif hit["hit_primate_real"] and gen and not hit["hit_platirrino_real"]:
         nivel = "B"
     elif pri in ("P3a", "P3c_ACE2"):
         nivel = "C"
+    elif pri == "P3d_ATELES":
+        nivel = "foco"
     else:
         nivel = ""
     return pri, nivel, pri_v1
@@ -253,6 +265,11 @@ def run_tests() -> int:
             True,
         ),
         ("ACE2 expression in lung tissue of COVID-19 patients", "ace2_cross", False),
+        ("Herpesvirus ateles", "foco_false", True),
+        ("SARS-CoV-2 infection in Ateles fusciceps", "foco", True),
+        ("brown spider monkeys", "foco", True),
+        ("Atelidae", "foco", True),
+        ("spider mite", "foco", False),
     ]
     fails = 0
     for text, kind, expect in cases:
@@ -274,6 +291,11 @@ def run_tests() -> int:
             got = f["hit_seleccion"]
         elif kind == "ace2_cross":
             got = f["hit_ace2_cross"]
+        elif kind == "foco":
+            got = f["foco_ateles"]
+        elif kind == "foco_false":
+            got = (not f["foco_ateles"]) and (not f["hit_platirrino_real"])
+            expect = True
         else:
             got = None
         ok = got == expect
@@ -374,6 +396,7 @@ def run_pipeline(args: argparse.Namespace) -> None:
             "cd4_ambiguo": str(hit["cd4_ambiguo"]).lower(),
             "hit_ace2": str(hit["hit_ace2"]).lower(),
             "hit_ace2_cross": str(hit["hit_ace2_cross"]).lower(),
+            "foco_ateles": str(hit["foco_ateles"]).lower(),
             "prioridad": pri,
             "prioridad_v1": pri_v1,
             "nivel_sugerido": nivel,
