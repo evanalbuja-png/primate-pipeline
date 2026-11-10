@@ -105,8 +105,10 @@ rule cribado_etapa0:
         esearch = expand(f"{OUTDIR}/{{qid}}/esearch.json", qid=config["pubmed"]["fetch"]),
     output:
         tsv = f"{OUTDIR}/cribado_base.tsv",
-        audit_p3 = f"{OUTDIR}/auditoria_P3b_100.tsv",
-        audit_p1 = f"{OUTDIR}/auditoria_P1_50.tsv",
+        audit_p1a = f"{OUTDIR}/auditoria_P1a_50.tsv",
+        audit_p1b = f"{OUTDIR}/auditoria_P1b_30.tsv",
+        audit_p3c = f"{OUTDIR}/auditoria_P3c_ACE2_30.tsv",
+        audit_p3b = f"{OUTDIR}/auditoria_P3b_100.tsv",
     conda:
         "../../envs/ateles_pubmed.yml"
     log:
@@ -117,7 +119,9 @@ rule cribado_etapa0:
             --config config/config.yaml \
             --root {OUTDIR} \
             --output {output.tsv} \
-            --audit-p3 {output.audit_p3} \
-            --audit-p1 {output.audit_p1} \
+            --audit-p1a {output.audit_p1a} \
+            --audit-p1b {output.audit_p1b} \
+            --audit-p3c {output.audit_p3c} \
+            --audit-p3b {output.audit_p3b} \
             > {log} 2>&1
         """

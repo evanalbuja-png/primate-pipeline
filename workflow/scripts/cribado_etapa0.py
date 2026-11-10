@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-"""Etapa 0 de cribado bibliográfico — prefiltro de PMIDs de las 18 consultas PubMed.
+"""Etapa 0 del cribado bibliográfico — prefiltro PubMed (v2).
+
+v2: filtra nombres de virus y líneas celulares antes de hit_primate_real /
+hit_platirrino_real; prioridades P1a/P1b/P2a/P2b/P3a/P3c_ACE2/P3b.
 
 Uso:
   python workflow/scripts/cribado_etapa0.py --test
-  python workflow/scripts/cribado_etapa0.py \\
-      --config config/config.yaml \\
+  python workflow/scripts/cribado_etapa0.py --config config/config.yaml \\
       --root results/bibliografia \\
-      --output results/bibliografia/cribado_base.tsv \\
-      --audit-p3 results/bibliografia/auditoria_P3b_100.tsv \\
-      --audit-p1 results/bibliografia/auditoria_P1_50.tsv
+      --output results/bibliografia/cribado_base.tsv
 """
 from __future__ import annotations
 
 import argparse
 import csv
-import json
 import re
 import sys
 from collections import defaultdict
@@ -22,6 +21,7 @@ from pathlib import Path
 
 from Bio import Medline
 
+VERSION = "v2"
 SEED = 20261027
 ANCHORS = {
     "15689398": "Sawyer_2005",
@@ -31,7 +31,20 @@ ANCHORS = {
     "32768453": "Torosin_2020_TLR7_TLR8_primates",
 }
 
-# --- regex (re.I) ---
+# --- patrones a ELIMINAR antes de primate_real / plat_real ---
+RE_STRIP = re.compile(
+    r"herpes\w*\s?virus saimiri|saimiriine|\bhvs\b|"
+    r"simian immunodeficiency virus\w*|simian[- ]human immunodeficiency|"
+    r"simian foamy|simian virus \d+|simian retrovirus|simian varicella|"
+    r"simian hemorrhagic|simian herpes\w*|simian sarcoma|"
+    r"simian t[- ]lymphotropic|mason-pfizer monkey virus|"
+    r"squirrel monkey retrovirus|monkeypox|monkey pox|"
+    r"herpesvirus aotus|\bsiv\w*\b|"
+    r"\bvero(\s?e6)?\b|\bcos-?7\b|llc-?mk2|\bma-?104\b|\bcv-?1\b|"
+    r"\bbs-?c-?1\b|\bb95-?8\b|(african green )?monkey kidney|monkey cells?",
+    re.I,
+)
+
 RE_PLATIRRINO = re.compile(
     r"\b(alouatta|aotus|ateles|callithrix|cebus|sapajus|saimiri|saguinus|"
     r"callicebus|plecturocebus|lagothrix|brachyteles|pithecia|cacajao|"
@@ -92,23 +105,38 @@ RE_VIR = re.compile(
     re.I,
 )
 
+RE_ACE2 = re.compile(r"\bace-?2\b|angiotensin-converting enzyme 2", re.I)
+RE_ACE2_CROSS = re.compile(
+    r"cross-species|host range|animal species|species-specific|"
+    r"wild (animals|mammals)|domestic and wild|vertebrates|orthologs?|"
+    r"across species|different species|multiple species|"
+    r"species susceptib\w+|susceptibility of (animals|mammals|species)",
+    re.I,
+)
+
 
 def norm_match(text: str) -> str:
-    """Minúsculas, espacios colapsados; conserva guiones/barras/símbolos."""
     t = (text or "").lower()
-    t = re.sub(r"\s+", " ", t).strip()
-    return t
+    return re.sub(r"\s+", " ", t).strip()
 
 
 def norm_titulo(text: str) -> str:
-    """Solo letras y dígitos en minúscula (sin espacios ni signos)."""
     return re.sub(r"[^a-z0-9]", "", (text or "").lower())
+
+
+def strip_virus_cell(text: str) -> str:
+    return RE_STRIP.sub(" ", text)
 
 
 def flags_for(text: str) -> dict:
     tm = norm_match(text)
+    tm_clean = norm_match(strip_virus_cell(tm))
+
     hit_plat = bool(RE_PLATIRRINO.search(tm))
     hit_prim = hit_plat or bool(RE_PRIMATE_EXTRA.search(tm))
+    hit_plat_real = bool(RE_PLATIRRINO.search(tm_clean))
+    hit_prim_real = hit_plat_real or bool(RE_PRIMATE_EXTRA.search(tm_clean))
+
     hit_gen = bool(RE_GEN_DIANA.search(tm))
     cd4_amb = False
     if RE_CD4.search(tm):
@@ -119,19 +147,69 @@ def flags_for(text: str) -> dict:
     hit_fam = bool(RE_GEN_FAMILIA.search(tm))
     hit_sel = bool(RE_SEL.search(tm))
     hit_vir = bool(RE_VIR.search(tm))
+    hit_ace2 = bool(RE_ACE2.search(tm))
+    hit_ace2_cross = hit_ace2 and bool(RE_ACE2_CROSS.search(tm))
+
     return dict(
         hit_platirrino=hit_plat,
         hit_primate=hit_prim,
+        hit_platirrino_real=hit_plat_real,
+        hit_primate_real=hit_prim_real,
         hit_gen_diana=hit_gen,
         hit_gen_familia=hit_fam,
         hit_seleccion=hit_sel,
         hit_virus=hit_vir,
         cd4_ambiguo=cd4_amb,
+        hit_ace2=hit_ace2,
+        hit_ace2_cross=hit_ace2_cross,
+        texto_match=tm,
+        texto_match_clean=tm_clean,
     )
+
+
+def assign_priority_v2(hit: dict, tipos: set) -> tuple[str, str]:
+    non_lit = tipos - {"literal"}
+    has_non_lit = bool(non_lit)
+    gen = hit["hit_gen_diana"] or hit["hit_gen_familia"]
+    # v1 priority first
+    if hit["hit_primate"] and gen and has_non_lit:
+        pri_v1 = "P1"
+    elif hit["hit_primate"] and gen and not has_non_lit:
+        pri_v1 = "P2"
+    elif gen and hit["hit_seleccion"] and not hit["hit_primate"]:
+        pri_v1 = "P3a"
+    else:
+        pri_v1 = "P3b"
+
+    if gen and hit["hit_primate_real"] and has_non_lit:
+        pri = "P1a"
+    elif pri_v1 == "P1":
+        pri = "P1b"
+    elif gen and hit["hit_primate_real"] and not has_non_lit:
+        pri = "P2a"
+    elif pri_v1 == "P2":
+        pri = "P2b"
+    elif pri_v1 == "P3a":
+        pri = "P3a"
+    elif pri_v1 == "P3b" and hit["hit_ace2_cross"]:
+        pri = "P3c_ACE2"
+    else:
+        pri = "P3b"
+
+    if hit["hit_platirrino_real"] and gen:
+        nivel = "A"
+    elif hit["hit_primate_real"] and gen and not hit["hit_platirrino_real"]:
+        nivel = "B"
+    elif pri in ("P3a", "P3c_ACE2"):
+        nivel = "C"
+    else:
+        nivel = ""
+    return pri, nivel, pri_v1
 
 
 def run_tests() -> int:
     cases = [
+        # v1 cases
         ("marmosets", "plat", True),
         ("howler monkeys", "plat", True),
         ("squirrel monkeys", "plat", True),
@@ -155,12 +233,36 @@ def run_tests() -> int:
         ("dN/dS", "sel", True),
         ("positive selection", "sel", True),
         ("positively selected", "sel", True),
+        # v2 virus/cell strip → real flags
+        ("herpesvirus saimiri", "plat_real", False),
+        ("simian immunodeficiency virus", "prim_real", False),
+        ("SIVmac239", "prim_real", False),
+        ("Mason-Pfizer monkey virus", "prim_real", False),
+        ("simian foamy virus", "prim_real", False),
+        ("monkeypox", "prim_real", False),
+        ("Vero E6 cells", "prim_real", False),
+        ("African green monkey kidney cells", "prim_real", False),
+        ("COS-7", "prim_real", False),
+        ("rhesus macaques infected with SIV", "prim_real", True),
+        ("owl monkey TRIMCyp", "plat_real", True),
+        ("Callithrix jacchus", "plat_real", True),
+        ("New World monkeys", "plat_real", True),
+        (
+            "Predicting susceptibility to SARS-CoV-2 based on ACE2 across species",
+            "ace2_cross",
+            True,
+        ),
+        ("ACE2 expression in lung tissue of COVID-19 patients", "ace2_cross", False),
     ]
     fails = 0
     for text, kind, expect in cases:
         f = flags_for(text)
         if kind == "plat":
             got = f["hit_platirrino"]
+        elif kind == "plat_real":
+            got = f["hit_platirrino_real"]
+        elif kind == "prim_real":
+            got = f["hit_primate_real"]
         elif kind == "gen":
             got = f["hit_gen_diana"]
         elif kind == "gen_amb":
@@ -170,12 +272,16 @@ def run_tests() -> int:
             got = f["hit_gen_familia"]
         elif kind == "sel":
             got = f["hit_seleccion"]
+        elif kind == "ace2_cross":
+            got = f["hit_ace2_cross"]
         else:
             got = None
         ok = got == expect
         if not ok:
             fails += 1
-        print(f"{'OK' if ok else 'FAIL'}\t{kind}\texpect={expect}\tgot={got}\t{text!r}\t{f}")
+        print(
+            f"{'OK' if ok else 'FAIL'}\t{kind}\texpect={expect}\tgot={got}\t{text!r}"
+        )
     print(f"fails={fails}")
     return 1 if fails else 0
 
@@ -196,7 +302,7 @@ def extract_doi(rec: dict) -> str:
 
 
 def load_records(root: Path, fetch_ids: list, queries_meta: dict):
-    pmid_data = {}  # pmid -> aggregate
+    pmid_data = {}
     for qid in fetch_ids:
         tipo = queries_meta.get(qid, {}).get("tipo", "")
         med = root / qid / "records.medline"
@@ -208,38 +314,10 @@ def load_records(root: Path, fetch_ids: list, queries_meta: dict):
                 if not pmid:
                     continue
                 if pmid not in pmid_data:
-                    pmid_data[pmid] = {
-                        "rec": rec,
-                        "consultas": set(),
-                        "tipos": set(),
-                    }
+                    pmid_data[pmid] = {"rec": rec, "consultas": set(), "tipos": set()}
                 pmid_data[pmid]["consultas"].add(qid)
                 pmid_data[pmid]["tipos"].add(tipo)
     return pmid_data
-
-
-def assign_priority(hit: dict, tipos: set) -> tuple[str, str]:
-    """Return (prioridad, nivel_sugerido)."""
-    non_lit = tipos - {"literal"}
-    has_non_lit = bool(non_lit)
-    gen = hit["hit_gen_diana"] or hit["hit_gen_familia"]
-    if hit["hit_primate"] and gen and has_non_lit:
-        pri = "P1"
-    elif hit["hit_primate"] and gen and not has_non_lit:
-        pri = "P2"
-    elif gen and hit["hit_seleccion"] and not hit["hit_primate"]:
-        pri = "P3a"
-    else:
-        pri = "P3b"
-    if hit["hit_platirrino"] and gen:
-        nivel = "A"
-    elif hit["hit_primate"] and gen and not hit["hit_platirrino"]:
-        nivel = "B"
-    elif pri == "P3a":
-        nivel = "C"
-    else:
-        nivel = ""
-    return pri, nivel
 
 
 def run_pipeline(args: argparse.Namespace) -> None:
@@ -265,7 +343,7 @@ def run_pipeline(args: argparse.Namespace) -> None:
             mh = [mh]
         texto = " ".join([title, ab] + list(ot) + list(mh))
         hit = flags_for(texto)
-        pri, nivel = assign_priority(hit, blob["tipos"])
+        pri, nivel, pri_v1 = assign_priority_v2(hit, blob["tipos"])
         dp = rec.get("DP") or ""
         m = re.search(r"(\d{4})", dp)
         year = m.group(1) if m else ""
@@ -287,21 +365,26 @@ def run_pipeline(args: argparse.Namespace) -> None:
             "tiene_resumen": str(bool(ab)).lower(),
             "hit_platirrino": str(hit["hit_platirrino"]).lower(),
             "hit_primate": str(hit["hit_primate"]).lower(),
+            "hit_platirrino_real": str(hit["hit_platirrino_real"]).lower(),
+            "hit_primate_real": str(hit["hit_primate_real"]).lower(),
             "hit_gen_diana": str(hit["hit_gen_diana"]).lower(),
             "hit_gen_familia": str(hit["hit_gen_familia"]).lower(),
             "hit_seleccion": str(hit["hit_seleccion"]).lower(),
             "hit_virus": str(hit["hit_virus"]).lower(),
             "cd4_ambiguo": str(hit["cd4_ambiguo"]).lower(),
+            "hit_ace2": str(hit["hit_ace2"]).lower(),
+            "hit_ace2_cross": str(hit["hit_ace2_cross"]).lower(),
             "prioridad": pri,
+            "prioridad_v1": pri_v1,
             "nivel_sugerido": nivel,
             "ancla": str(pmid in ANCHORS).lower(),
             "ancla_nombre": ANCHORS.get(pmid, ""),
             "dup_titulo": "false",
             "pmid_duplicado": "",
             "ab_preview": (ab or "")[:300],
+            "version": VERSION,
         })
 
-    # duplicados por doi o titulo_norm
     by_key = defaultdict(list)
     for r in rows:
         if r["doi"]:
@@ -313,8 +396,7 @@ def run_pipeline(args: argparse.Namespace) -> None:
         uniq = sorted(set(plist))
         if len(uniq) > 1:
             for p in uniq:
-                others = [x for x in uniq if x != p]
-                pmid_to_dup[p] = others[0]
+                pmid_to_dup[p] = [x for x in uniq if x != p][0]
     for r in rows:
         if r["pmid"] in pmid_to_dup:
             r["dup_titulo"] = "true"
@@ -327,10 +409,8 @@ def run_pipeline(args: argparse.Namespace) -> None:
         w.writeheader()
         w.writerows(sorted(rows, key=lambda x: x["pmid"]))
 
-    # auditorías
     rng = random.Random(SEED)
-    p3b = [r for r in rows if r["prioridad"] == "P3b"]
-    p1 = [r for r in rows if r["prioridad"] == "P1"]
+
     def write_audit(path, pool, n):
         sample = pool if len(pool) <= n else rng.sample(pool, n)
         with open(path, "w", encoding="utf-8", newline="") as fh:
@@ -340,9 +420,15 @@ def run_pipeline(args: argparse.Namespace) -> None:
             w.writerows(sample)
         print(f"audit {path}: {len(sample)} de {len(pool)}")
 
-    write_audit(args.audit_p3, p3b, 100)
-    write_audit(args.audit_p1, p1, 50)
-    print(f"cribado_base: {len(rows)} filas -> {args.output}")
+    pools = {
+        args.audit_p1a: ([r for r in rows if r["prioridad"] == "P1a"], 50),
+        args.audit_p1b: ([r for r in rows if r["prioridad"] == "P1b"], 30),
+        args.audit_p3c: ([r for r in rows if r["prioridad"] == "P3c_ACE2"], 30),
+        args.audit_p3b: ([r for r in rows if r["prioridad"] == "P3b"], 100),
+    }
+    for path, (pool, n) in pools.items():
+        write_audit(path, pool, n)
+    print(f"cribado_base {VERSION}: {len(rows)} filas -> {args.output}")
 
 
 def main():
@@ -351,8 +437,10 @@ def main():
     ap.add_argument("--config", default="config/config.yaml")
     ap.add_argument("--root", default="results/bibliografia")
     ap.add_argument("--output", default="results/bibliografia/cribado_base.tsv")
-    ap.add_argument("--audit-p3", default="results/bibliografia/auditoria_P3b_100.tsv")
-    ap.add_argument("--audit-p1", default="results/bibliografia/auditoria_P1_50.tsv")
+    ap.add_argument("--audit-p1a", default="results/bibliografia/auditoria_P1a_50.tsv")
+    ap.add_argument("--audit-p1b", default="results/bibliografia/auditoria_P1b_30.tsv")
+    ap.add_argument("--audit-p3c", default="results/bibliografia/auditoria_P3c_ACE2_30.tsv")
+    ap.add_argument("--audit-p3b", default="results/bibliografia/auditoria_P3b_100.tsv")
     args = ap.parse_args()
     if args.test:
         sys.exit(run_tests())
