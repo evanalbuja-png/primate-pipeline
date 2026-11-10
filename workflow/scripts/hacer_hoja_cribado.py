@@ -139,9 +139,73 @@ def main():
                 ws.cell(i, 19, "virus_o_celulas")
                 ws.cell(i, 17, "Excluir")
 
+
+    # Calibracion_P1a_50
+    import random as _random
+    audit_path = root / "auditoria_P1a_50.tsv"
+    if not audit_path.exists():
+        audit_path = Path("docs/bibliografia/auditoria_P1a_50.tsv")
+    audit_pmids = []
+    if audit_path.exists():
+        with audit_path.open(encoding="utf-8") as fh:
+            for row in csv.DictReader(fh, delimiter="\t"):
+                audit_pmids.append(row["pmid"])
+    p1a_by_pmid = {r["pmid"]: r for r in sheets_map["P1a"]}
+    cal = [p1a_by_pmid[p] for p in audit_pmids if p in p1a_by_pmid]
+    _rng = _random.Random(20261110)
+    _rng.shuffle(cal)
+
+    # write Calibracion sheet
+    name = "Calibracion_P1a_50"
+    ws = wb.create_sheet(name)
+    for c, h in enumerate(cols, 1):
+        cell = ws.cell(1, c, h)
+        cell.font = header_font
+        cell.fill = header_fill
+    for i, r in enumerate(cal, 2):
+        for c, h in enumerate(cols, 1):
+            ws.cell(i, c, r.get(h, ""))
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = f"A1:{get_column_letter(len(cols))}{max(len(cal)+1, 2)}"
+    ws.column_dimensions["D"].width = 50
+    ws.column_dimensions["G"].width = 60
+    for dv, col in [(dv1, 17), (dv2, 18), (dv3, 19), (dv4, 20)]:
+        dv.add(f"{get_column_letter(col)}2:{get_column_letter(col)}{max(len(cal)+1, 2)}")
+    ws.add_data_validation(dv1)
+    ws.add_data_validation(dv2)
+    ws.add_data_validation(dv3)
+    ws.add_data_validation(dv4)
+
+    # Criterios
+    ws = wb.create_sheet("Criterios")
+    criterios_txt = (
+        "PASO 1 (título + resumen visible):\n"
+        "Incluir = el estudio trata primates (cualquiera; prioridad platirrinos) Y uno de los 19 genes diana "
+        "(TLR1,2,3,4,7,8,9; TRIM5; APOBEC3G/H; MX1/2; OAS1/2; BST2; ACE2; CD4 como receptor de entrada; DDX58; MAVS) "
+        "o su familia cercana (TLR5/6/10, otros APOBEC3, factores de restricción) Y un componente comparativo: "
+        "selección positiva, divergencia o polimorfismo entre especies, restricción o susceptibilidad específica "
+        "de especie, o estructura-función comparada.\n"
+        "Dudoso = cumple dos de las tres condiciones, o el título es ambiguo, o es un gen fuera de la lista con "
+        "selección positiva en primates (motivo_exclusion = gen_fuera_lista).\n"
+        "Excluir = primates solo como modelo experimental (vacunas, adyuvantes, terapias, farmacología); "
+        "expresión de un gen en un tejido sin comparación entre especies; estudios solo en humanos (clínicos, GWAS); "
+        "virus sin componente del hospedador; genes fuera de lista sin selección/evolución.\n\n"
+        "PASO 2 (resumen completo): solo para Incluir y Dudoso. Confirmar o excluir; asignar nivel_final, genes_diana y especies.\n\n"
+        "NIVELES: A = platirrinos + gen diana (comparativo); B = primates no platirrinos + gen diana (comparativo); "
+        "C = mamíferos/vertebrados comparativos o metodológicos (p. ej. ACE2 entre especies, PAML/HyPhy); "
+        "foco = P3d_ATELES (patógenos/inmunidad/enfermedad en Ateles y Atelidae). Excluidos de P3d: comportamiento, "
+        "endocrinología, reproducción.\n\n"
+        "P3a, P3c y P3d: solo por título; Incluir = útil como contexto comparativo o del taxón focal."
+    )
+    for i, line in enumerate(criterios_txt.split("\n"), 1):
+        ws.cell(i, 1, line)
+    ws.column_dimensions["A"].width = 120
+
     out = root / "cribado_manual.xlsx"
     wb.save(out)
     print(f"escrito {out} size={out.stat().st_size}")
+    print("filas Calibracion_P1a_50:", len(cal))
+
 
     # excluidos P3b tsv
     with open(root / "excluidos_P3b.tsv", "w", encoding="utf-8", newline="") as fh:
